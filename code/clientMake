@@ -1,0 +1,5 @@
+client: client.cpp
+	g++ -pedantic --std=gnu++14 -o client client.cpp
+
+clean:
+	rm client *~

@@ -1,0 +1,43 @@
+02/10: Connection keeps failing
+02/11: We forget to set the flag hints.ai_flags = AI_PASSIVE which means we have to fill the ip address of our host by ourselves.
+
+02/12: Accecpt function keeps failing
+02/13: Used wrong file descrpitor in the accept function.
+
+02/14: Didn't check the byte sent length. Some time the bytes cannot be sent entirely.
+02/15: Add a if statement to throw an exception from the error part.
+
+02/16: The receive function is always blocking
+02/17: Rewrite the receive function which will receive the header first, and then will parse the 
+       content in the header. Use addition information to read the body.
+
+02/20: The program will terminate if received a wrong ip address
+02/21: Removed the EXIT(FAILURE) statement in the function.
+
+02/22: No page will be returned if the proxy is throwing errors
+02/23: Wrote a 502 bad gateway as the response when handling the exception.
+
+02/24: valgrind not clean with errors of invalid read of size 2/3/4/5/6/7/8.
+02/25: Changed all the code which used vector<char>.data() function. This .data() method is not implemented well.
+
+02/26: When computing the expiration time, the result of maketime function is not consistant.
+02/26: The field tm_isdst is not declared in the program which will give us the inconsistant outcoming.
+       We assigned it with a value of -1.
+
+02/26: The stale pages cannot be displayed by the browser.
+02/26: Found it was how the browser implemented.
+
+02/26: The receive body function for receiving chunked data is not working well.
+02/27: Gave a large space for one time receiving. Some pages don't implement chunked encoding well.
+
+02/27: Responses start with 3 are blocked by our proxy.
+02/27: Wrong implementation of the receive_body function. We found only 304 and 204 responds have no body.
+
+02/27: Responses start with 4 are blocked by our proxy.
+02/28: Wrong implementation of the receive_body function. We found only 304 and 204 responds have no body.
+
+02/28: Expiration time is in negative scale.
+02/28: Added 5 hours for adjusting the time zone.
+
+Exception Guarantee:
+Basic

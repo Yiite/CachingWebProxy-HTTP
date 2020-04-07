@@ -1,0 +1,38 @@
+Common Cases:
+
+CONNECTION:
+run: echo -e "CONNECT https://www.google.com:443 HTTP/1.1\r\nHost: www.google.com:443\r\n\r\n" | nc 152.3.64.101 12345
+output: HTTP/1.1 200 Connection established
+
+run: echo -e "CONNECT https://www.youtube.com:443 HTTP/1.1\r\nHost: www.youtube.com:443\r\n\r\n" | nc 152.3.64.101 12345
+output: HTTP/1.1 200 Connection established
+
+GET:
+run: echo -e "GET / HTTP/1.1\r\nHost: man7.org\r\n\r\n" | nc 152.3.64.101 12345
+output: HTTP/1.1 200 OK + <headers> + <body>
+
+run: echo -e "GET / HTTP/1.1\r\nHost: www.mof.gov.cn\r\n\r\n" | nc 152.3.64.101 12345
+output: HTTP/1.1 200 OK + <headers> + <body>
+
+POST:
+please go to http://httpbin.org/forms/post for checking our post function.
+
+Concurrent Requests:
+Open multiple webpages on multiple browsers to check the concurrent function of our proxy
+
+Unusual Cases:
+
+Return 400 Bad Request:
+run: echo -e "GET##F234233efwsdf / HTTP/1.1\r\nHost: www.mof.gov.cn\r\n\r\n" | nc 152.3.64.101 12345
+output: HTTP/1.1 400 Bad Request
+
+run: echo -e "CONNDFDFDSFECT / HTTP/1.1\r\nHost: www.google.com\r\n\r\n" | nc 152.3.64.101 12345
+output: HTTP/1.1 400 Bad Request
+
+Return 502 Bad Gateway
+run: echo -e "GET / HTTP/1.1\r\nHost: www.mof.g.cn\r\n\r\n" | nc 152.3.64.101 12345
+output: HTTP/1.1 502 Bad Gateway
+
+run echo -e "CONNECT / HTTP/1.1\r\nHost: www.google\r\n\r\n" | nc 152.3.64.101 12345
+output: HTTP/1.1 502 Bad Gateway
+
